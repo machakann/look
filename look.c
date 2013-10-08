@@ -3,8 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-// global variables
-int word_maximum_length = 45;    // assume pneumonoultramicroscopicsilicovolcanoconiosis as the longest word.
+#define WORD_MAXIMUM_LENGTH 45    // assume pneumonoultramicroscopicsilicovolcanoconiosis as the longest word.
 
 // prototype declarelation
 void trim_nonalnum(char *string);
@@ -12,8 +11,8 @@ int strcmpcs(char ch1, char ch2, int flag);
 
 int main(int argc,char *argv[])
 {
-    char string[word_maximum_length];
-    char word[word_maximum_length];
+    char string[WORD_MAXIMUM_LENGTH];
+    char word[WORD_MAXIMUM_LENGTH];
     const char *root_path = getenv("USERPROFILE");
     char dict_path[255];
     char alternate_dict_path[255];
@@ -87,11 +86,11 @@ int main(int argc,char *argv[])
     }
 
     // modification of string
-    for (i = 0;i<word_maximum_length+1;i++){
+    for (i = 0;i<WORD_MAXIMUM_LENGTH+1;i++){
         if (string[i] == '\0'){
             break;
         }
-        else if (i == word_maximum_length){
+        else if (i == WORD_MAXIMUM_LENGTH){
             string[i] = '\0';
         }
     }
@@ -107,9 +106,9 @@ int main(int argc,char *argv[])
             flag_error = 4;
         }
         else{
-            while(fgets(word, word_maximum_length, file)){
+            while(fgets(word, WORD_MAXIMUM_LENGTH, file)){
                 if (flag_d == 1){ trim_nonalnum(string); }
-                for (i = 0;i<word_maximum_length+1;i++){
+                for (i = 0;i<WORD_MAXIMUM_LENGTH+1;i++){
                     if (string[i] == termchar){
                         if (termchar == '\0' || strcmpcs(string[i], word[i], flag_f)){
                             // matched
@@ -138,7 +137,7 @@ int main(int argc,char *argv[])
 void trim_nonalnum(char *string){
     char *string_copied;
 
-    string_copied = (char *)malloc(sizeof(char) * (word_maximum_length+1));
+    string_copied = (char *)malloc(sizeof(char) * (WORD_MAXIMUM_LENGTH+1));
     strcpy(string_copied, string);
     while (*string_copied != '\0'){
         if (isalnum(*string_copied)){
