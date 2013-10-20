@@ -36,8 +36,8 @@ int main(int argc,char *argv[])
     int i;
     int flag_error = 0;
 
-    sprintf(dict_path, "%s\\Documents\\dict\\words\0", root_path);
-    sprintf(alternate_dict_path, "%s\\Documents\\dict\\web2\0", root_path);
+    snprintf(dict_path, sizeof(dict_path), "%s\\Documents\\dict\\words\0", root_path);
+    snprintf(alternate_dict_path, sizeof(alternate_dict_path), "%s\\Documents\\dict\\web2\0", root_path);
     file_path = dict_path;
     string[0] = '\0';
     termchar = '\0';
