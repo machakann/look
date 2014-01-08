@@ -61,9 +61,9 @@ int main(int argc,char *argv[])
             case 'h': fprintf(stdout, "\n%s", help);
                       return 0;
             case ':': fprintf(stderr, "%s: option requires an argument -- \'%c\'\n\n%s", argv[0], optopt, help);
-                      return 2;
+                      return 1;
             case '?': fprintf(stderr, "%s: invalid option -- \'%c\'\n\n%s", argv[0], optopt, help);
-                      return 3;
+                      return 2;
         }
     }
 
@@ -103,7 +103,7 @@ int main(int argc,char *argv[])
         if ((file = fopen(file_path, "r")) == NULL){
             // can not find words dictionary.
             fprintf(stderr, "%s: %s: No such file or directory", argv[0], file_path);
-            flag_error = 4;
+            flag_error = 3;
         }
         else{
             while(fgets(word, WORD_MAXIMUM_LENGTH, file)){
@@ -113,7 +113,7 @@ int main(int argc,char *argv[])
                         if (termchar == '\0' || strcmpcs(string[i], word[i], flag_f)){
                             // matched
                             fprintf(stdout, "%s", word);
-                            flag_error = 1;
+                            flag_error = 0;
                             break;
                         }
                         else{
