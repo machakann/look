@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #define WORD_MAXIMUM_LENGTH 255
 #define LOAD_AT_ONCE 1000
@@ -104,7 +105,6 @@ int main(int argc,char *argv[]) {
             do {
                 n = load_strings(&fp, words);
                 i = search_start(string, words, termchar, flag_f);
-                fprintf(stdout, "n = %d, i = %d\n", n, i);
                 if (i < LOAD_AT_ONCE) {
                     break;
                 }
